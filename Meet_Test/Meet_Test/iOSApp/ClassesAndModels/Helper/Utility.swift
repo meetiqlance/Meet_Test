@@ -8,10 +8,9 @@
 import Foundation
 import UIKit
 
-
 class Utility: NSObject {
-    static let shared = Utility()
     
+    static let shared = Utility()
     
     //MARK:- Add Alert
     func showAlert(_ vc:UIViewController,strTitle:String) {
@@ -34,7 +33,7 @@ class Utility: NSObject {
         if let _buttons = buttons {
             for button in _buttons {
                 let action = UIAlertAction(title: button, style: .default) { (action) in
-                   // let index = _buttons.firstIndex(of: action.title!)
+                    // let index = _buttons.firstIndex(of: action.title!)
                     actions?(action,button)
                 }
                 alertController.addAction(action)
@@ -77,7 +76,7 @@ class Utility: NSObject {
     }
     
     func matches(for regex: String, in text: String) -> [String] {
-
+        
         do {
             let regex = try NSRegularExpression(pattern: regex)
             let results = regex.matches(in: text,
@@ -90,21 +89,21 @@ class Utility: NSObject {
             return []
         }
     }
-
+    
     //MARK:- Convert json data
-       func convertIntoJSONString(arrayObject: [Any]) -> String? {
-
-           do {
-               let jsonData: Data = try JSONSerialization.data(withJSONObject: arrayObject, options: [])
-               if  let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) {
-                   return jsonString as String
-               }
-               
-           } catch let error as NSError {
-               print("Array convertIntoJSON - \(error.description)")
-           }
-           return nil
-       }
+    func convertIntoJSONString(arrayObject: [Any]) -> String? {
+        
+        do {
+            let jsonData: Data = try JSONSerialization.data(withJSONObject: arrayObject, options: [])
+            if  let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) {
+                return jsonString as String
+            }
+            
+        } catch let error as NSError {
+            print("Array convertIntoJSON - \(error.description)")
+        }
+        return nil
+    }
     
     //MARK:- UICollection View cell size
     func estimatedFrame(text: String, font: UIFont) -> CGRect {
@@ -117,24 +116,8 @@ class Utility: NSObject {
     }
     
     
-
+    
     //MARK:- Show alert
-//    func showAlert(message: String,vc: UIViewController){
-//        let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
-//
-//        // Create the actions
-//        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
-//            UIAlertAction in
-//            CustomLoader.shared.hideActivityIndicator()
-//            vc.dismiss(animated: true, completion: nil)
-//        }
-//
-//        // Add the actions
-//        alertController.addAction(okAction)
-//
-//        // Present the controller
-//        vc.present(alertController, animated: true, completion: nil)
-//    }
     
     //MARK:- Remove string
     func removeText (strString: String,strRemoveString: String) -> String {
@@ -144,8 +127,8 @@ class Utility: NSObject {
     
     //MARK:- Random String Generate
     func randomString(length: Int) -> String {
-      let letters = "0123456789"
-      return String((0..<length).map{ _ in letters.randomElement()! })
+        let letters = "0123456789"
+        return String((0..<length).map{ _ in letters.randomElement()! })
     }
     
     //MARK:- UserDefault store key
@@ -153,5 +136,4 @@ class Utility: NSObject {
         return UserDefaults.standard.object(forKey: key) != nil
     }
     
-
 }

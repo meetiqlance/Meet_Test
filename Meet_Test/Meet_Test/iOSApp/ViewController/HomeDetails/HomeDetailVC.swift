@@ -22,20 +22,17 @@ class HomeDetailVC: UIViewController {
     
     @IBOutlet weak var txtNote: UITextView!
     
-    var strName = String()
+    var titleName = String()
     var index = Int()
     
-    var arrHomeDataDetail : Home?
-    var arrCoreHomeDetail = [TestUser]()
+    var arrOfHomeDataDetail : Home?
+    var arrOfCoreHomeDetail = [TestUser]()
     
     //MARK:- 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.lblTitle.text = strName
-        self.arrCoreHomeDetail.removeAll()
-        self.callApiDetail(strName: strName, isLoader: true)
-        
+        self.initialSetup()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -54,51 +51,12 @@ class HomeDetailVC: UIViewController {
         
         APIManager.sharedInstance.parseAPIKeyWithURLGET(String(format: Constant.USER_DETAIL + "\(strName)"), isFalg: false, showLoadingIndicator: true, ModelType: Home.self) { (response) in
 
-            print("adsadjsnfsjdfhhj",response)
+            print("Response",response)
             switch response {
             case .success(let data):
         
-                self.arrHomeDataDetail = data
-                DispatchQueue.main.async {
-                    
-                    self.arrCoreHomeDetail = DatabaseHelper.shareInstence.getData()
-                    
-                    self.imgProfile.loadFrom(URLAddress: self.arrHomeDataDetail?.avatarURL ?? "ic_profile")
-                    
-                    self.txtNote.text = "\(self.arrCoreHomeDetail[self.index].notes ?? "write note")"
-                    
-                    if let name = self.arrHomeDataDetail?.name{
-                        self.lblName.text = " Name: " + "\(name)"
-                    }else{
-                        self.lblName.isHidden = true
-                    }
-                    
-                    if let company = self.arrHomeDataDetail?.company{
-                        self.lblComapny.text = " Company: " + "\(company)"
-                    }else{
-                        self.lblComapny.isHidden = true
-                    }
-                    
-                    if let following = self.arrHomeDataDetail?.following{
-                        self.lblFollowing.text = " Following: " + "\(following)"
-                    }else{
-                        self.lblFollowing.isHidden = true
-                    }
-                    
-                    if let blog = self.arrHomeDataDetail?.blog{
-                        self.lblBlog.text = " Blog: " + "\(blog)"
-                    }else{
-                        self.lblBlog.isHidden = true
-                    }
-                    
-                    if let followers = self.arrHomeDataDetail?.followers{
-                        self.lblFollowers.text = " Followers: " + "\(followers)"
-                    }else{
-                        self.lblFollowers.isHidden = true
-                    }
-        
-                    CustomLoader.sharedInstance.hideActivityIndicator()
-                }
+                self.arrOfHomeDataDetail = data
+                self.setData()
                 
             case .failure(let error):
                 print(error.localizedDescription)
@@ -111,6 +69,7 @@ class HomeDetailVC: UIViewController {
     
     //MARK:-  Buttons Clicked Action
     @IBAction func btnBackAction(_ sender: UIButton) {
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -119,7 +78,7 @@ class HomeDetailVC: UIViewController {
         if txtNote.text == "write note" || txtNote.text == "" {
             self.showAlertWithOkButton(message: "Please Enter Note")
         }else{
-            let dict :  [String : String]  = ["name" : "\(self.arrCoreHomeDetail[index].name ?? "")", "followers" : "\(self.arrCoreHomeDetail[index].followers ?? "")" , "following": "\(self.arrCoreHomeDetail[index].following ?? "")" , "blog": "\(self.arrCoreHomeDetail[index].blog ?? "")","company": "\(self.arrCoreHomeDetail[index].company ?? "")","detail": "\(self.arrCoreHomeDetail[index].detail ?? "")","notes": "\(self.txtNote.text ?? "")","avatar_url": "\(self.arrCoreHomeDetail[index].avatar_url ?? "")"]
+            let dict :  [String : String]  = ["name" : "\(self.arrOfCoreHomeDetail[index].name ?? "")", "followers" : "\(self.arrOfCoreHomeDetail[index].followers ?? "")" , "following": "\(self.arrOfCoreHomeDetail[index].following ?? "")" , "blog": "\(self.arrOfCoreHomeDetail[index].blog ?? "")","company": "\(self.arrOfCoreHomeDetail[index].company ?? "")","detail": "\(self.arrOfCoreHomeDetail[index].detail ?? "")","notes": "\(self.txtNote.text ?? "")","avatar_url": "\(self.arrOfCoreHomeDetail[index].avatar_url ?? "")"]
             DatabaseHelper.shareInstence.editData(object: dict, i: index)
         }
         
@@ -127,23 +86,75 @@ class HomeDetailVC: UIViewController {
     }
     
     //MARK:-  Functions
+    private func initialSetup() {
+        
+        self.lblTitle.text = titleName
+        self.arrOfCoreHomeDetail.removeAll()
+        self.callApiDetail(strName: titleName, isLoader: true)
+    }
+    
+    private func setData() {
+        
+        DispatchQueue.main.async {
+            
+            self.arrOfCoreHomeDetail = DatabaseHelper.shareInstence.getData()
+            
+            self.imgProfile.loadFrom(URLAddress: self.arrOfHomeDataDetail?.avatarURL ?? "ic_profile")
+            
+            self.txtNote.text = "\(self.arrOfCoreHomeDetail[self.index].notes ?? "write note")"
+            
+            if let name = self.arrOfHomeDataDetail?.name{
+                self.lblName.text = " Name: " + "\(name)"
+            }else{
+                self.lblName.isHidden = true
+            }
+            
+            if let company = self.arrOfHomeDataDetail?.company{
+                self.lblComapny.text = " Company: " + "\(company)"
+            }else{
+                self.lblComapny.isHidden = true
+            }
+            
+            if let following = self.arrOfHomeDataDetail?.following{
+                self.lblFollowing.text = " Following: " + "\(following)"
+            }else{
+                self.lblFollowing.isHidden = true
+            }
+            
+            if let blog = self.arrOfHomeDataDetail?.blog{
+                self.lblBlog.text = " Blog: " + "\(blog)"
+            }else{
+                self.lblBlog.isHidden = true
+            }
+            
+            if let followers = self.arrOfHomeDataDetail?.followers{
+                self.lblFollowers.text = " Followers: " + "\(followers)"
+            }else{
+                self.lblFollowers.isHidden = true
+            }
+
+            CustomLoader.sharedInstance.hideActivityIndicator()
+        }
+    }
 }
 
 extension HomeDetailVC: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
         if txtNote.text == "write note"{
             txtNote.text = ""
         }
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
+        
         self.txtNote.resignFirstResponder()
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        
         textView.resignFirstResponder()
         return true;
     }
-    
 }

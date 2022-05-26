@@ -22,7 +22,6 @@ enum flag: Bool {
 
 class APIManager: NSObject {
     
-    
     static let sharedInstance: APIManager = {
         
         let instance = APIManager()
@@ -37,13 +36,10 @@ class APIManager: NSObject {
     func parseAPIKeyWithURLGET<T:Codable>(_ WS_URL : String, isFalg: Bool = true, showLoadingIndicator : Bool, ModelType:T.Type,complitionHandler:@escaping CompletionHandler<T>)
     {
         
-        //func parseAPIKeyWithURLGET<T: Codable>(_ WS_URL : String, isFalg: Bool = true, showLoadingIndicator : Bool, ModelType: T.Type, complitionHandler: @escaping CompletionHandler<T>){
-        
         let jsonRequest: NSMutableURLRequest = NSMutableURLRequest()
         jsonRequest.url = URL(string: WS_URL)!
         jsonRequest.httpMethod = "GET"
         jsonRequest.timeoutInterval = WSTimeOut
-        
         
         let task = URLSession.shared.dataTask(with: jsonRequest as URLRequest) { data, response, error in
             
@@ -54,9 +50,6 @@ class APIManager: NSObject {
                 }
             }
             
-            //            print("Data", data)
-            //            print("Response", response)
-            //
             if isFalg {
                 if response != nil {
                     do {
@@ -69,7 +62,6 @@ class APIManager: NSObject {
                             //arr.append(ava)
                             complitionHandler(.success(ava as! T))
                         }
-                        
                         
                     } catch let error as NSError {
                         print(error.localizedDescription)
@@ -86,7 +78,7 @@ class APIManager: NSObject {
                         let ava = Home(login: "\(jsonResult["login"] ?? "")", id: 0, nodeID: "\(jsonResult["node_id"] ?? "")", avatarURL: "\(jsonResult["avatar_url"] ?? "")", gravatarID: "", url: "", htmlURL: "", followersURL: "", followingURL: "", gistsURL: "", starredURL: "", subscriptionsURL: "", organizationsURL: "", reposURL: "", eventsURL: "", receivedEventsURL: "", type: TypeEnum.user, siteAdmin: true, name: "\(jsonResult["name"] ?? "")", company: "\(jsonResult["company"] ?? "")", blog: "\(jsonResult["blog"] ?? "")", location: "", email: "", hireable: "", bio: "", twitterUsername: "", publicRepos: 0, publicGists: 0, followers: Int("\(jsonResult["followers"] ?? "")") ?? 0, following: Int("\(jsonResult["following"] ?? "")") ?? 0, createdAt: Date(), updatedAt: Date())
                         
                         complitionHandler(.success(ava as! T))
-                
+                        
                     } catch let error as NSError {
                         print(error.localizedDescription)
                     }
@@ -98,6 +90,5 @@ class APIManager: NSObject {
         }
         task.resume()
     }
-    
     
 }

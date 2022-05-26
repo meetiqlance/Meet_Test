@@ -269,7 +269,7 @@ extension String {
         dateFormatter.timeZone = NSTimeZone.local
         dateFormatter.dateFormat = "h:mm a"
         
-        return dateFormatter.string(from: dt ?? Date()) 
+        return dateFormatter.string(from: dt ?? Date())
     }
     mutating func OfflineToLocal() -> String {
         
@@ -395,11 +395,11 @@ extension CGFloat {
 
 extension UIDevice {
     var isSimulator: Bool {
-        #if IOS_SIMULATOR
+#if IOS_SIMULATOR
         return true
-        #else
+#else
         return false
-        #endif
+#endif
     }
 }
 
@@ -553,12 +553,12 @@ private var KeyMaxLength: Int = 0
 extension UITextField{
     public var hasValidEmail: Bool {
         return text!.range(of: "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}" +
-                            "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" +
-                            "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-" +
-                            "z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5" +
-                            "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" +
-                            "9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" +
-                            "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
+                           "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" +
+                           "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-" +
+                           "z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5" +
+                           "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" +
+                           "9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" +
+                           "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
                            options: String.CompareOptions.regularExpression,
                            range: nil, locale: nil) != nil
     }
@@ -763,7 +763,7 @@ extension UIViewController{
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-
+    
 }
 //MARK:- UITableview
 extension UITableView {
@@ -784,7 +784,7 @@ extension Array {
 
 //MARK:- UICharacter Set
 extension Character {
-
+    
     func isUpperCase() -> Bool {
         return CharacterSet.uppercaseLetters.contains(self.unicodeScalars.first!)
     }
@@ -792,7 +792,7 @@ extension Character {
     func isLowerCase() -> Bool {
         return CharacterSet.lowercaseLetters.contains(self.unicodeScalars.first!)
     }
-
+    
 }
 //MARK:- Button Control
 extension UIControl {
@@ -816,24 +816,24 @@ extension UIControl {
 
 //MARK:- UIView Dotted Line
 extension UIView {
-   func createDottedLine(width: CGFloat, color: CGColor) {
-      let caShapeLayer = CAShapeLayer()
-      caShapeLayer.strokeColor = color
-      caShapeLayer.lineWidth = width
-      caShapeLayer.lineDashPattern = [2,3]
-      let cgPath = CGMutablePath()
-      let cgPoint = [CGPoint(x: 0, y: 0), CGPoint(x: self.frame.width, y: 0)]
-      cgPath.addLines(between: cgPoint)
-      caShapeLayer.path = cgPath
-      layer.addSublayer(caShapeLayer)
-   }
+    func createDottedLine(width: CGFloat, color: CGColor) {
+        let caShapeLayer = CAShapeLayer()
+        caShapeLayer.strokeColor = color
+        caShapeLayer.lineWidth = width
+        caShapeLayer.lineDashPattern = [2,3]
+        let cgPath = CGMutablePath()
+        let cgPoint = [CGPoint(x: 0, y: 0), CGPoint(x: self.frame.width, y: 0)]
+        cgPath.addLines(between: cgPoint)
+        caShapeLayer.path = cgPath
+        layer.addSublayer(caShapeLayer)
+    }
     
     func roundCorners(corners: UIRectCorner, radius: CGFloat) {
-         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-         let mask = CAShapeLayer()
-         mask.path = path.cgPath
-         layer.mask = mask
-     }
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
 }
 
 extension NSAttributedString{
@@ -847,7 +847,7 @@ extension NSAttributedString{
 }
 
 extension UITableView {
-
+    
     func registerXIB(name: String) {
         self.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
     }
@@ -917,7 +917,7 @@ extension UIImageView {
         DispatchQueue.main.async { [weak self] in
             if let imageData = try? Data(contentsOf: url) {
                 if let loadedImage = UIImage(data: imageData) {
-                        self?.image = loadedImage
+                    self?.image = loadedImage
                 }
             }
         }

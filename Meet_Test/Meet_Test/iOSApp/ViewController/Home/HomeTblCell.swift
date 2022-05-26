@@ -9,13 +9,14 @@ import UIKit
 
 class HomeTblCell: UITableViewCell {
     
+    //MARK:-  Outlets and Variable Declarations
     @IBOutlet weak var imgProfile: UIImageView!
-    
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var lblUserDetail: UILabel!
     @IBOutlet weak var imgFile: UIImageView!
     @IBOutlet weak var btnFile: UIButton!
     
+    //MARK:- 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,6 +28,9 @@ class HomeTblCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    //MARK:-  Buttons Clicked Action
+    
+    //MARK:-  Functions
     func configureCell(arr: TestUser)  {
         
         self.imgFile.image = UIImage(named: "ic_file")?.withRenderingMode(.alwaysTemplate)

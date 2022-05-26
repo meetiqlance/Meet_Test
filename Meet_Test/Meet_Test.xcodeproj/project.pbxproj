@@ -71,6 +71,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FF76C746283E48A400A7D11D /* AppDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				FFE621FA283E40C700891583 /* AppDelegate.swift */,
+				FFE621FC283E40C700891583 /* SceneDelegate.swift */,
+			);
+			path = AppDelegates;
+			sourceTree = "<group>";
+		};
+		FF76C747283E48BF00A7D11D /* iOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				FF76C748283E48D400A7D11D /* ClassesAndModels */,
+				FFE62223283E425500891583 /* ViewController */,
+			);
+			path = iOSApp;
+			sourceTree = "<group>";
+		};
+		FF76C748283E48D400A7D11D /* ClassesAndModels */ = {
+			isa = PBXGroup;
+			children = (
+				FFE6220E283E425500891583 /* TestUser+CoreDataClass copy.swift */,
+				FFE62211283E425500891583 /* TestUser+CoreDataProperties copy.swift */,
+				FFE62217283E425500891583 /* Custom */,
+				FFE6220F283E425500891583 /* Extension */,
+				FFE62212283E425500891583 /* Helper */,
+				FFE62226283E425500891583 /* Model */,
+			);
+			path = ClassesAndModels;
+			sourceTree = "<group>";
+		};
+		FF76C749283E48F000A7D11D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FFE62225283E425500891583 /* HomeVC.swift */,
+				FFE62221283E425500891583 /* HomeTblCell.swift */,
+				FFE62222283E425500891583 /* HomeTblCell.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FF76C74A283E490C00A7D11D /* HomeDetails */ = {
+			isa = PBXGroup;
+			children = (
+				FFE62224283E425500891583 /* HomeDetailVC.swift */,
+			);
+			path = HomeDetails;
+			sourceTree = "<group>";
+		};
 		FFE621EE283E40C700891583 = {
 			isa = PBXGroup;
 			children = (
@@ -90,19 +139,9 @@
 		FFE621F9283E40C700891583 /* Meet_Test */ = {
 			isa = PBXGroup;
 			children = (
-				FFE621FA283E40C700891583 /* AppDelegate.swift */,
-				FFE621FC283E40C700891583 /* SceneDelegate.swift */,
-				FFE621FE283E40C700891583 /* ViewController.swift */,
-				FFE62223283E425500891583 /* Controller */,
-				FFE62217283E425500891583 /* Custom */,
-				FFE6220F283E425500891583 /* Extension */,
-				FFE62212283E425500891583 /* Helper */,
-				FFE62226283E425500891583 /* Model */,
+				FF76C746283E48A400A7D11D /* AppDelegates */,
+				FF76C747283E48BF00A7D11D /* iOSApp */,
 				FFE62215283E425500891583 /* Test.xcdatamodeld */,
-				FFE6220E283E425500891583 /* TestUser+CoreDataClass copy.swift */,
-				FFE62211283E425500891583 /* TestUser+CoreDataProperties copy.swift */,
-				FFE62220283E425500891583 /* View */,
-				FFE62200283E40C700891583 /* Main.storyboard */,
 				FFE62203283E40C900891583 /* Assets.xcassets */,
 				FFE62205283E40C900891583 /* LaunchScreen.storyboard */,
 				FFE62208283E40C900891583 /* Info.plist */,
@@ -156,22 +195,15 @@
 			path = Loader;
 			sourceTree = "<group>";
 		};
-		FFE62220283E425500891583 /* View */ = {
+		FFE62223283E425500891583 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				FFE62221283E425500891583 /* HomeTblCell.swift */,
-				FFE62222283E425500891583 /* HomeTblCell.xib */,
+				FFE621FE283E40C700891583 /* ViewController.swift */,
+				FFE62200283E40C700891583 /* Main.storyboard */,
+				FF76C749283E48F000A7D11D /* Home */,
+				FF76C74A283E490C00A7D11D /* HomeDetails */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		FFE62223283E425500891583 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				FFE62225283E425500891583 /* HomeVC.swift */,
-				FFE62224283E425500891583 /* HomeDetailVC.swift */,
-			);
-			path = Controller;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		FFE62226283E425500891583 /* Model */ = {
@@ -421,6 +453,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LX6D23KTW6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Meet_Test/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -433,11 +466,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Meet-Test";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps.tajmeel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -448,6 +481,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LX6D23KTW6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Meet_Test/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -460,11 +494,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Meet-Test";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps.tajmeel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
